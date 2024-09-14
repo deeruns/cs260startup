@@ -18,4 +18,5 @@ In honor of the **OLYMPIC GAMES** this last summer, and all the **BYU** runners 
 ### WebSocket:
  update the votes to other users on the global tally
 
-
+### Model:
+![IMG_4240](https://github.com/user-attachments/assets/99443604-e3ec-4d29-b7c1-12feafe5110c)
