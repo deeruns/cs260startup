@@ -20,3 +20,16 @@ In honor of the **OLYMPIC GAMES** this last summer, and all the **BYU** runners 
 
 ### Model:
 ![IMG_4240](https://github.com/user-attachments/assets/99443604-e3ec-4d29-b7c1-12feafe5110c)
+
+
+# HTML STARTUP
+
+HTML pages: 4 added pages. One of which (scores) is formatted much different from the others because I was expirimenting with using chatgpt for help
+Good use of HTML tags
+Links between pages work properly
+Put in the correct content for my website
+Place holders put in
+Use of many images
+Login and user name have been displayed
+DataBase and Websocket data place holders
+
