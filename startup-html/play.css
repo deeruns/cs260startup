@@ -5,17 +5,17 @@ body {
 
 /* Primary colors for BYU */
 .bg-primary {
-    background-color: #002e6d !important;
+    background-color: #016bff !important;
 }
 
 .text-primary {
-    color: #002e6d !important;
+    color: #046dff !important;
 }
 
 /* Secondary button customization */
 .btn-secondary {
-    background-color: #0073ff !important;
-    border-color: #0073ff !important;
+    background-color: #000000 !important;
+    border-color: #000000 !important;
 }
 
 a.text-white:hover {
