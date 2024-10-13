@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,66 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BYU RUNNERS</title>
     <link rel="icon" href="favicon.ico" />
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="play.css" />
   </head>
   <body>
-    <header>
-      <h1>BYU RUNNERS: Click your favorite runner to show your support!!!<sup>&reg;</sup></h1>
-
-      <nav></nav>
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
-      </nav>
-      <hr />
+    <header class="bg-primary text-white p-3">
+      <div class="container">
+        <h1>
+          BYU RUNNERS: Click your favorite runner to show your support!!!
+          <sup>&reg;</sup>
+        </h1>
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="play.html">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="scores.html">Scores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+        <hr class="border-white" />
+      </div>
     </header>
 
-    <main>
-      <div class="players">
-        Purpose:
-        <span class="player-name"> This page is for playing the "game" where users will spam click on their favorite runners, tallying up the score</span>
+    <main class="container my-4">
+      <div class="players mb-4">
+        <h3 class="text-primary">Purpose:</h3>
+        <span class="player-name">
+          This page is for playing the "game" where users will spam click on
+          their favorite runners, tallying up the score.
+        </span>
       </div>
-      <div class="Kenneth">
+
+      <div class="runner-card border border-primary p-3 mb-4">
+        <h4>Kenneth Rooks</h4>
         <p>
-            Kenneth Rooks: Silver Medal at the Paris Olympics in the 3000m Steeplechase. Born and Raised in Walla Walla Washington. Former BYU Cross Country and Track Runner. Current Nike Athlete.
+          Silver Medal at the Paris Olympics in the 3000m Steeplechase. Born and
+          Raised in Walla Walla Washington. Former BYU Cross Country and Track
+          Runner. Current Nike Athlete.
         </p>
-        <img width="200px" src="https://hips.hearstapps.com/hmg-prod/images/paris-france-7-august-2024-kenneth-rooks-of-team-usa-centre-news-photo-1723062547.jpg?crop=1xw:0.90566xh;center,top&resize=1200:*" alt="KennethOly" />
+        <button class="btn btn-outline-primary runner-btn" data-runner="kenneth">
+          <img
+            class="img-fluid"
+            width="200px"
+            src="https://hips.hearstapps.com/hmg-prod/images/paris-france-7-august-2024-kenneth-rooks-of-team-usa-centre-news-photo-1723062547.jpg?crop=1xw:0.90566xh;center,top&resize=1200:*"
+            alt="KennethOly"
+          />
+        </button>
+        <!--
+        <img
+          class="img-fluid mb-3"
+          width="200px"
+          src="https://hips.hearstapps.com/hmg-prod/images/paris-france-7-august-2024-kenneth-rooks-of-team-usa-centre-news-photo-1723062547.jpg?crop=1xw:0.90566xh;center,top&resize=1200:*"
+          alt="KennethOly"
+        />
+        -->
+        <div>
+          <label for="count-kenneth">Score</label>
+          <input type="text" id="count-kenneth" class="form-control" value="--" readonly />
+        </div>
       </div>
-      <br >
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-      </div>
-      <div class="James">
+
+      <div class="runner-card border border-primary p-3 mb-4">
+        <h4>James Corrigan</h4>
         <p>
-            James Corrigan: Paris Olympic Athlete in the 3000m Steeplechase. Current BYU athlete. AKA frisb_runner
+          Paris Olympic Athlete in the 3000m Steeplechase. Current BYU athlete.
+          AKA frisb_runner.
         </p>
-        <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg/1200px-2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg" alt="JamesOly" />
+        <button class="btn btn-outline-primary runner-btn" data-runner="james">
+          <img
+            class="img-fluid"
+            width="150px"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg/1200px-2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg"
+            alt="JamesOly"
+          />
+        </button>
+        <!--
+        <img
+          class="img-fluid mb-3"
+          width="150px"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg/1200px-2024_United_States_Olympic_trials_%28track_and_field%29_%2853814288518%29.jpg"
+          alt="JamesOly"
+        />
+        -->
+        <div>
+          <label for="count-james">Score</label>
+          <input type="text" id="count-james" class="form-control" value="--" readonly />
+        </div>
       </div>
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-     </div>
-     <div class="Mantz">
+
+      <div class="runner-card border border-primary p-3 mb-4">
+        <h4>Conner Mantz</h4>
         <p>
-            Conner Mantz: 8th place in the Paris Olympics Marathon. Nike Athlete. BYU alumni.
+          8th place in the Paris Olympics Marathon. Nike Athlete. BYU alumni.
         </p>
-        <img width="150px" src="https://www.denverpost.com/wp-content/uploads/2024/05/DCC-L-24BBoulder864.jpg?w=1024&h=1403" alt="MantzOly" />
-      </div> 
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
+        <button class="btn btn-outline-primary runner-btn" data-runner="mantz">
+          <img
+            class="img-fluid"
+            width="150px"
+            src="https://www.denverpost.com/wp-content/uploads/2024/05/DCC-L-24BBoulder864.jpg?w=1024&h=1403"
+            alt="MantzOly"
+          />
+        </button>
+        <!--
+        <img
+          class="img-fluid mb-3"
+          width="150px"
+          src="https://www.denverpost.com/wp-content/uploads/2024/05/DCC-L-24BBoulder864.jpg?w=1024&h=1403"
+          alt="MantzOly"
+        />
+        -->
+        <div>
+          <label for="count-mantz">Score</label>
+          <input type="text" id="count-mantz" class="form-control" value="--" readonly />
+        </div>
       </div>
-      <br />
     </main>
-    
-    <footer>
-      <hr />
-      <span class="text-reset">Davin Thompson</span>
-      <br />
-      <a href="https://github.com/deeruns/cs260startup">GitHub</a>
+
+    <footer class="bg-dark text-white p-3">
+      <div class="container text-center">
+        <hr class="border-white" />
+        <span class="text-reset">Davin Thompson</span>
+        <br />
+        <a href="https://github.com/deeruns/cs260startup" class="text-white">GitHub</a>
+      </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
