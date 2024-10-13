@@ -2,55 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Davin Runs HTML</title>
     <link rel="icon" href="favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>BYU RUNNERS<sup>&reg;</sup></h1>
-      <nav>
-        <!-- Menu -->
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
-      </nav>
-
-      <!-- formatting -->
-      <hr />
+    <header class="bg-primary text-white p-3">
+      <div class="container">
+        <h1>BYU RUNNERS<sup>&reg;</sup></h1>
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="play.html">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="scores.html">Scores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+        <hr class="border-white" />
+      </div>
     </header>
 
-    <main>
-      <h1>Welcome to the BYU Running Website</h1>
-      <form method="get" action="play.html">
-        <div>
-          <span>Username</span>
-          <input type="text" placeholder="your@email.com" />
+    <main class="container my-4">
+      <h1 class="text-primary">Welcome to the BYU Running Website</h1>
+      <form method="get" action="play.html" class="my-4">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            placeholder="your@email.com"
+          />
         </div>
-        <div>
-          <span>Password</span>
-          <input type="password" placeholder="password" />
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="password"
+          />
         </div>
-        <button type="submit">Login</button>
-        <button type="submit">Sign up</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-secondary">Sign up</button>
       </form>
-      <div>
-        <img width="400px" src="waite.jpeg" alt="coachwaite" />
-        <p>
-            Login or Create an account to show your support for BYU Runners.
-        </p>
+      <div class="text-center">
+        <img
+          src="waite.jpeg"
+          alt="coachwaite"
+          class="img-fluid mb-3"
+          width="400"
+        />
+        <p>Login or Create an account to show your support for BYU Runners.</p>
       </div>
     </main>
 
-    <footer>
-      <hr />
-      <span class="text-reset">Davin Thompson</span>
-      <br />
-      <a href="https://github.com/deeruns/cs260startup">GitHub</a>
+    <footer class="bg-dark text-white p-3">
+      <div class="container text-center">
+        <hr class="border-white" />
+        <span class="text-reset">Davin Thompson</span>
+        <br />
+        <a href="https://github.com/deeruns/cs260startup" class="text-white">GitHub</a>
+      </div>
     </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
