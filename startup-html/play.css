@@ -14,8 +14,8 @@ body {
 
 /* Secondary button customization */
 .btn-secondary {
-    background-color: #000000 !important;
-    border-color: #000000 !important;
+    background-color: #0073ff !important;
+    border-color: #0073ff !important;
 }
 
 a.text-white:hover {
@@ -46,3 +46,4 @@ hr.border-white {
     animation: bounce-side 2s infinite;
 }
 
+  
