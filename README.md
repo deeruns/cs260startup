@@ -33,3 +33,11 @@ Use of many images
 Login and user name have been displayed
 DataBase and Websocket data place holders
 
+
+#CSS STARTUP
+CSS pages: added css files to go along with every html file for styling
+HTML: added bootstrap notation in my HTML files for styling
+Header: added with the title of each page and BYU blue styling
+Footer: A footer on each page with my name and github link
+Main body: different on each page for different purposes. login, a play page with moving pictures and buttons, a scores page to show the scores and an about page to proide information
+window is responsive and resizes
