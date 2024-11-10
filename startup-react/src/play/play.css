@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Primary colors for BYU */
+.bg-primary {
+    background-color: #016bff !important;
+}
+
+.text-primary {
+    color: #046dff !important;
+}
+
+/* Secondary button customization */
+.btn-secondary {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+a.text-white:hover {
+    text-decoration: underline;
+}
+
+footer .border-white {
+    border-top: 1px solid #ffffff;
+}
+
+hr.border-white {
+    border-color: #ffffff;
+}
+
+/* Animation for bouncing side-to-side */
+@keyframes bounce-side {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+/* Apply the animation to the runner buttons */
+.runner-btn img {
+    animation: bounce-side 2s infinite;
+}
+
+.runner-btn {
+    animation: bounce-side 2s infinite;
+}
+
+  
