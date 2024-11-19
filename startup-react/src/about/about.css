@@ -1,20 +1,16 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color:#f8f9fa; /* Light grey background for contrast */
-  }
-  
-  /* Primary colors for BYU */
+
+    /* Primary colors for BYU */
   .bg-primary {
-    background-color: #002e6d !important; /* BYU Blue */
+    background-color: #006aff !important; /* BYU Blue */
   }
   
   .text-primary {
-    color: #002e6d !important; /* BYU Blue */
+    color: #006aff !important; /* BYU Blue */
   }
   
   .btn-secondary {
-    background-color: #000000 !important; /* Black */
-    border-color: #000000 !important;
+    background-color: #ffffff !important; /* Black */
+    border-color: #ffffff !important;
   }
   
   a.text-white:hover {
@@ -30,4 +26,4 @@ body {
   }
   #image-container {
     margin-top: 50px; /* Adjust the value as needed */
-}
+} 

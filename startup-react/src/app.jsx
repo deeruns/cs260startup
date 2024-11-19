@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
@@ -7,7 +6,7 @@ import { Scores } from './scores/scores';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
+import './app.css'; // Shared styling across pages
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
@@ -18,65 +17,71 @@ function App() {
     <BrowserRouter>
       <div className='body bg-dark text-light'>
         <header className='container-fluid'>
-          <nav className='navbar fixed-top navbar-dark'>
-            <div className='navbar-brand'>
-              Simon<sup>&reg;</sup>
+          <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-primary'>
+            <div className='container'>
+              <span className='navbar-brand'>
+                BYU RUNNERS<sup>&reg;</sup>
+              </span>
+              <div className='navbar-collapse'>
+                <ul className='navbar-nav ml-auto'>
+                  <li className='nav-item'>
+                    <NavLink className='nav-link' to='/'>
+                      Login
+                    </NavLink>
+                  </li>
+                  {authState === AuthState.Authenticated && (
+                    <>
+                      <li className='nav-item'>
+                        <NavLink className='nav-link' to='/play'>
+                          Play
+                        </NavLink>
+                      </li>
+                      <li className='nav-item'>
+                        <NavLink className='nav-link' to='/scores.html'>
+                          Scores
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
+                  <li className='nav-item'>
+                    <NavLink className='nav-link' to='/about'>
+                      About
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <menu className='navbar-nav'>
-              <li className='nav-item'>
-                <NavLink className='nav-link' to=''>
-                  Login
-                </NavLink>
-              </li>
-              {authState === AuthState.Authenticated && (
-                <li className='nav-item'>
-                  <NavLink className='nav-link' to='play'>
-                    Play
-                  </NavLink>
-                </li>
-              )}
-              {authState === AuthState.Authenticated && (
-                <li className='nav-item'>
-                  <NavLink className='nav-link' to='scores'>
-                    Scores
-                  </NavLink>
-                </li>
-              )}
-              <li className='nav-item'>
-                <NavLink className='nav-link' to='about'>
-                  About
-                </NavLink>
-              </li>
-            </menu>
           </nav>
         </header>
 
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Login
-                userName={userName}
-                authState={authState}
-                onAuthChange={(userName, authState) => {
-                  setAuthState(authState);
-                  setUserName(userName);
-                }}
-              />
-            }
-            exact
-          />
-          <Route path='/play' element={<Play userName={userName} />} />
-          <Route path='/scores' element={<Scores />} />
-          <Route path='/about' element={<About />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <main className='mt-5 pt-5'>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <Login
+                  userName={userName}
+                  authState={authState}
+                  onAuthChange={(userName, authState) => {
+                    setAuthState(authState);
+                    setUserName(userName);
+                  }}
+                />
+              }
+            />
+            <Route path='/play' element={<Play userName={userName} />} />
+            <Route path='/scores' element={<Scores />} />
+            <Route path='/about' element={<About />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
 
-        <footer className='bg-dark text-dark text-muted'>
-          <div className='container-fluid'>
-            <span className='text-reset'>Author Name(s)</span>
-            <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
-              Source
+        <footer className='footer bg-primary text-light mt-auto py-3'>
+          <div className='container text-center'>
+            <span className='text-reset'>Davin Thompson</span>
+            <br />
+            <a href='https://github.com/deeruns/cs260startup' className='text-reset'>
+              GitHub
             </a>
           </div>
         </footer>
@@ -86,70 +91,13 @@ function App() {
 }
 
 function NotFound() {
-  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+  return (
+    <main className='container-fluid bg-secondary text-center'>
+      <h2>404: Page Not Found</h2>
+      <p>Return to the homepage.</p>
+    </main>
+  );
 }
 
 export default App;
 
-
-
-// import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import './app.css';
-
-
-// export default function App() {
-//     return (
-//       <div className='body bg-dark text-light'>
-//         <header className='container-fluid'>
-//           <nav className='navbar fixed-top navbar-dark'>
-//             <div className='navbar-brand'>
-//               BYU Running
-//             </div>
-//             <menu className='navbar-nav'>
-//               <li className='nav-item'>
-//                 <a className='nav-link' href='index.html'>
-//                   Home
-//                 </a>
-//               </li>
-//               <li className='nav-item'>
-//                 <a className='nav-link' href='play.html'>
-//                   Play
-//                 </a>
-//               </li>
-//               <li className='nav-item'>
-//                 <a className='nav-link' href='scores.html'>
-//                   Scores
-//                 </a>
-//               </li>
-//               <li className='nav-item'>
-//                 <a className='nav-link' href='about.html'>
-//                   About
-//                 </a>
-//               </li>
-//               <li className='nav-item'>
-//                 <a className='nav-link' href='login.html'>
-//                   Login
-//                 </a>
-//               </li>
-//             </menu>
-//           </nav>
-//         </header>
-  
-//         <main>
-//           {/* Main content will be rendered here */}
-//           <h1>Welcome to BYU Running</h1>
-//           <p>Click on your favorite runners and show your support!</p>
-//         </main>
-  
-//         <footer className='bg-dark text-white-50'>
-//           <div className='container-fluid'>
-//             <span className='text-reset'>Author Name(s)</span>
-//             <a className='text-reset' href='https://github.com/yourusername/your-repo'>
-//               Source
-//             </a>
-//           </div>
-//         </footer>
-//       </div>
-//     );
-//   }
