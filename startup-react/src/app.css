@@ -1,31 +1,45 @@
+/* Define BYU color scheme */
 .body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa; /* Light grey background for contrast */
+  background-color: #0080ff; /* BYU Blue */
+  color: white;
 }
 
-/* Primary colors for BYU */
-.bg-primary {
-  background-color: #002e6d !important; /* BYU Blue */
+.navbar {
+  background-color: #0080ff; /* BYU Blue */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow effect */
 }
 
-.text-primary {
-  color: #002e6d !important; /* BYU Blue */
+.nav-link {
+  color: white !important; /* Ensure white links */
+  padding: 10px 15px; /* Ensure links have some padding */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-/* Secondary button customization */
-.btn-secondary {
-  background-color: #000000 !important; /* Black */
-  border-color: #000000 !important;
+.nav-link:hover {
+  color: #FFC425; /* BYU gold for text color on hover */
+  background-color: rgba(255, 196, 37, 0.2); /* Light gold background on hover */
+  border-radius: 5px; /* Rounded corners for a nicer hover effect */
+  text-decoration: underline; /* Adds an underline on hover */
 }
 
-a.text-white:hover {
-  text-decoration: underline;
+.footer {
+  background-color: #0080ff; /* BYU Blue */
+  padding: 10px;
+  text-align: center;
 }
 
-footer .border-white {
-  border-top: 1px solid #ffffff;
+.footer a {
+  color: white !important;
 }
 
-hr.border-white {
-  border-color: #ffffff;
+.main-content {
+  background-color: white;
+  color: #0080ff; /* BYU Blue text */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.bg-secondary {
+  background-color: #F8F9FA !important; /* Light grey for contrast */
+  color: #0080ff; /* BYU Blue text */
 }

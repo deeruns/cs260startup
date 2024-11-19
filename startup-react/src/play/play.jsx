@@ -6,7 +6,7 @@ export function Play() {
     <div>
       <header className="bg-primary text-white p-3 text-center">
         <h1>BYU RUNNERS: Click your favorite runner to show your support!!!<sup>&reg;</sup></h1>
-        <nav>
+        {/* <nav>
           <ul className="nav justify-content-center">
             <li className="nav-item">
               <a className="nav-link text-white" href="index.html">Home</a>
@@ -22,7 +22,7 @@ export function Play() {
             </li>
           </ul>
         </nav>
-        <hr className="border-white" />
+        <hr className="border-white" /> */}
       </header>
 
       <main className="container my-4">
@@ -84,12 +84,12 @@ export function Play() {
         </div>
       </main>
 
-      <footer className="bg-dark text-white p-3 text-center">
+      {/* <footer className="bg-dark text-white p-3 text-center">
         <hr className="border-white" />
         <span className="text-reset">Davin Thompson</span>
         <br />
         <a href="https://github.com/deeruns/cs260startup" className="text-white">GitHub</a>
-      </footer>
+      </footer> */}
     </div>
   );
 }

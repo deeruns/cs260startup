@@ -1,0 +1,92 @@
+/* Primary colors for BYU */
+.bg-primary {
+    background-color: #016bff !important;
+}
+
+.text-primary {
+    color: #046dff !important;
+}
+
+/* Secondary button customization */
+.btn-secondary {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+a.text-white:hover {
+    text-decoration: underline;
+}
+
+footer .border-white {
+    border-top: 1px solid #ffffff;
+}
+
+hr.border-white {
+    border-color: #ffffff;
+}
+
+/* Runner Information */
+.runner-info {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.runner-info h3 {
+    color: #002e6d; /* BYU Blue */
+    margin-bottom: 10px;
+}
+
+.runner-info img {
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, animation 0.3s;
+}
+
+/* Highlighting Effect */
+.runner-info img:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 128, 255, 0.6); /* BYU blue glow */
+    cursor: pointer;
+    animation: none; /* Stops bounce animation on hover */
+}
+
+.runner-info p {
+    margin: 10px 0 15px;
+}
+
+/* Animation for Bouncing Side-to-Side */
+@keyframes bounce-side {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+/* Apply the animation to the runner buttons */
+.runner-btn img {
+    animation: bounce-side 2s infinite;
+}
+
+.runner-btn {
+    animation: bounce-side 2s infinite;
+}
+
+/* Score Section */
+.score label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.score input {
+    width: 80px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.score input[readonly] {
+    background-color: #f9f9f9;
+    color: #333;
+}
