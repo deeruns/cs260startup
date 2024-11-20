@@ -1,6 +1,26 @@
 
     /* Primary colors for BYU */
-  .bg-primary {
+    .header-byu-blue {
+      color: #002e5d; /* BYU Blue */
+      font-weight: bold;
+    }
+    
+    .picture-box img {
+      width: 800px; /* Half size */
+      height: auto;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    
+    .picture-box img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #002e5d;
+    }
+    
+    .clickable-image {
+      cursor: pointer;
+    }
+
+    .bg-primary {
     background-color: #006aff !important; /* BYU Blue */
   }
   
@@ -27,3 +47,22 @@
   #image-container {
     margin-top: 50px; /* Adjust the value as needed */
 } 
+
+.quote-box {
+  border: 2px solid #0080ff; /* BYU Blue border */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa; /* Light background for contrast */
+}
+
+.quote {
+  font-style: italic;
+  margin: 0;
+}
+
+.author {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
