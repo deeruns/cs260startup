@@ -1,33 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './scores.css';
 
 export function Scores() {
-  // Default predefined athletes
   const defaultScores = [
-    { name: 'Kenneth Rooks', score: 0, date: '2024-06-01' },
-    { name: 'Conner Mantz', score: 0, date: '2024-06-01' },
-    { name: 'James Corrigan', score: 0, date: '2024-06-01' }
+    { name: 'Kenneth Rooks', key: 'kennethRooks', score: 0 },
+    { name: 'James Corrigan', key: 'jamesCorrigan', score: 0 },
+    { name: 'Conner Mantz', key: 'connerMantz', score: 0 },
   ];
 
-  const [scores, setScores] = React.useState(defaultScores);
+  const [scores, setScores] = useState(defaultScores);
 
-  React.useEffect(() => {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      const savedScores = JSON.parse(scoresText);
+  useEffect(() => {
+    const savedScores = localStorage.getItem('runnerScores');
+    if (savedScores) {
+      const playScores = JSON.parse(savedScores);
 
-      // Update only scores and dates for the default names
-      const updatedScores = defaultScores.map((athlete) => {
-        const matchingScore = savedScores.find((entry) => entry.name === athlete.name);
-        if (matchingScore) {
-          return {
-            ...athlete,
-            score: matchingScore.score,
-            date: matchingScore.date
-          };
-        }
-        return athlete;
-      });
+      const updatedScores = defaultScores.map((athlete) => ({
+        ...athlete,
+        score: playScores[athlete.key] || 0,
+      }));
 
       setScores(updatedScores);
     }
@@ -46,16 +37,14 @@ export function Scores() {
               <th>#</th>
               <th>Name</th>
               <th>Score</th>
-              <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {scores.map((score, i) => (
-              <tr key={i}>
-                <td>{i + 1}</td>
+            {scores.map((score, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
                 <td>{score.name}</td>
                 <td>{score.score}</td>
-                <td>{score.date}</td>
               </tr>
             ))}
           </tbody>
@@ -64,4 +53,8 @@ export function Scores() {
     </div>
   );
 }
+
+
+
+
 
