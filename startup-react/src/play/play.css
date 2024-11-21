@@ -1,4 +1,4 @@
-/* Primary colors for BYU */
+/* Primary Colors for BYU */
 .bg-primary {
     background-color: #016bff !important;
 }
@@ -7,7 +7,7 @@
     color: #046dff !important;
 }
 
-/* Secondary button customization */
+/* Secondary Button Customization */
 .btn-secondary {
     background-color: #000000 !important;
     border-color: #000000 !important;
@@ -17,6 +17,7 @@ a.text-white:hover {
     text-decoration: underline;
 }
 
+/* Borders and Dividers */
 footer .border-white {
     border-top: 1px solid #ffffff;
 }
@@ -25,68 +26,114 @@ hr.border-white {
     border-color: #ffffff;
 }
 
-/* Runner Information */
+/* Runner Information Cards */
 .runner-info {
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly darker shadow for contrast */
+    padding: 25px;
+    margin: 25px 0;
     text-align: center;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.runner-info:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow */
 }
 
 .runner-info h3 {
     color: #002e6d; /* BYU Blue */
-    margin-bottom: 10px;
-}
-
-.runner-info img {
-    border-radius: 10px;
-    transition: transform 0.3s, box-shadow 0.3s, animation 0.3s;
-}
-
-/* Highlighting Effect */
-.runner-info img:hover {
-    transform: scale(1.1); /* Slight zoom effect */
-    box-shadow: 0 8px 16px rgba(0, 128, 255, 0.6); /* BYU blue glow */
-    cursor: pointer;
-    animation: none; /* Stops bounce animation on hover */
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .runner-info p {
-    margin: 10px 0 15px;
+    margin: 15px 0 20px;
+    line-height: 1.6; /* Improve readability */
+    color: #333; /* Dark text for better contrast */
 }
 
-/* Animation for Bouncing Side-to-Side */
-@keyframes bounce-side {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
-    100% { transform: translateX(0); }
+/* Runner Images */
+.runner-info img {
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 100%;
+    height: auto; /* Ensure responsiveness */
 }
 
-/* Apply the animation to the runner buttons */
-.runner-btn img {
-    animation: bounce-side 2s infinite;
-}
-
-.runner-btn {
-    animation: bounce-side 2s infinite;
+.runner-info img:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 128, 255, 0.6); /* BYU Blue glow */
+    cursor: pointer;
 }
 
 /* Score Section */
 .score label {
     font-weight: bold;
     margin-right: 10px;
+    color: #002e5d; /* BYU Blue */
 }
 
 .score input {
-    width: 80px;
+    width: 100px;
     text-align: center;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1rem;
 }
 
 .score input[readonly] {
     background-color: #f9f9f9;
     color: #333;
+    font-weight: bold;
+}
+
+/* Header Styling */
+.header-byu-blue {
+    color: #002e5d; /* BYU Blue */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Quote Box */
+.quote-box {
+    border: 3px solid #002e5d; /* BYU Blue border */
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 12px;
+    background-color: #f8f9fa; /* Light background for contrast */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #555; /* Neutral gray for elegance */
+    margin: 0;
+    text-align: center;
+}
+
+.author {
+    text-align: right;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Hover Animation */
+@keyframes bounce-side {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+/* Runner Button Animation */
+.runner-btn img {
+    animation: bounce-side 2s infinite;
+}
+
+.runner-btn {
+    animation: bounce-side 2s infinite;
 }
