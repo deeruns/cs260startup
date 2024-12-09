@@ -3,45 +3,23 @@ const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
+// mongo setup
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('simon');
+
+// Collections
 const userCollection = db.collection('user');
 const scoreCollection = db.collection('score');
 
-// This will asynchronously test the connection and exit the process if it fails
+// test mongo
 (async function testConnection() {
-  await client.connect();
-  await db.command({ ping: 1 });
-})().catch((ex) => {
-  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
-  process.exit(1);
-});
-
-function getUser(email) {
-  return userCollection.findOne({ email: email });
-}
-
-function getUserByToken(token) {
-  return userCollection.findOne({ token: token });
-}
-
-async function createUser(email, password) {
-  // Hash the password before we insert it into the database
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = {
-    email: email,
-    password: passwordHash,
-    token: uuid.v4(),
-  };
-  await userCollection.insertOne(user);
-
-  return user;
-}
-
-module.exports = {
-  getUser,
-  getUserByToken,
-  createUser,
-};
+  try {
+    await client.connect();
+    await db.command({ ping: 1 });
+    console.log("Successfully connected to the database.");
+  } catch (ex) {
+    console.error(`Unable to connect to database: ${ex.message}`);
+    process.exit(1);
+  }
+})();
