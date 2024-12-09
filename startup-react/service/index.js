@@ -19,6 +19,27 @@ app.set('trust proxy', true);
 
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+//authtoken created
+apiRouter.post('/auth/create', async (req, res) => {
+  const { email, password } = req.body;
+
+  if (users[email]) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    const user = {
+      email,
+      password: await bcrypt.hash(password, 10),
+      token: uuid.v4(),
+    };
+    users[email] = user;
+
+    setAuthCookie(res, user.token);
+    res.send({ id: user.email });
+  }
+});
+
+
 // new user
 apiRouter.post('/auth/create', async (req, res) => {
   const user = users[req.body.email];
