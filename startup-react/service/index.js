@@ -1,26 +1,33 @@
+const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
-const express = require('express');
-const app = express();
-const DB = require('./database.js');
+const uuid = require('uuid');
 
+const app = express();
 const authCookieName = 'token';
 
+// In-memory storage
+let users = {};
+let scores = [
+  { name: 'Kenneth', score: 12729 },
+  { name: 'Conner', score: 3283 },
+  { name: 'James', score: 0 },
+];
+
+// The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
+// JSON body parsing using built-in middleware
 app.use(express.json());
-
 app.use(cookieParser());
-
-
 app.use(express.static('public'));
-
 app.set('trust proxy', true);
 
+// Router for service endpoints
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-//authtoken created
+// CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
   const { email, password } = req.body;
 
@@ -39,7 +46,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 });
 
-// get authtoken
+// GetAuth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
   const { email, password } = req.body;
   const user = users[email];
@@ -53,13 +60,13 @@ apiRouter.post('/auth/login', async (req, res) => {
   }
 });
 
-// DeleteAuth
+// DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
 
-//verifies credentials for endpoints
+// SecureApiRouter verifies credentials for endpoints
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
@@ -79,12 +86,17 @@ secureApiRouter.get('/scores', (_req, res) => {
   res.send(scores);
 });
 
-// submitScore
+// SubmitScore
 secureApiRouter.post('/score', (req, res) => {
   const { voter, votes } = req.body;
 
   if (!users[voter]) {
     res.status(400).send({ msg: 'Voter not recognized' });
+    return;
+  }
+
+  if (!Array.isArray(votes) || !isValidVote(votes)) {
+    res.status(400).send({ msg: 'Invalid vote submission' });
     return;
   }
 
@@ -111,7 +123,7 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-// update helper
+// Helper function to update scores
 function updateScores(votes, scores) {
   for (const vote of votes) {
     const scoreEntry = scores.find(s => s.name === vote.name);
@@ -120,6 +132,15 @@ function updateScores(votes, scores) {
     }
   }
   return scores;
+}
+
+// Helper function to validate votes
+function isValidVote(votes) {
+  const allowedNames = ['Kenneth', 'Conner', 'James'];
+  return votes.every(vote => 
+    allowedNames.includes(vote.name) && 
+    typeof vote.score === 'number' && vote.score > 0
+  );
 }
 
 // Start the server
