@@ -2,50 +2,49 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 
-// The scores and users are saved in memory and disappear whenever the service is restarted.
+// In-memory storage
 let users = {};
-//let scores = [];
+let scores = [
+  { name: 'Kenneth', score: 12729 },
+  { name: 'Conner', score: 3283 },
+  { name: 'James', score: 0 },
+];
 
 //port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
-//json
+// JSON
 app.use(express.json());
-
-//frontend hosting
 app.use(express.static('public'));
-
 //router
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
-
-//login user
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = users[req.body.email];
-  if (user) {
-    if (req.body.password === user.password) {
-      user.token = uuid.v4();
-      res.send({ token: user.token });
-      return;
-    }
-  }
-  res.status(401).send({ msg: 'Unauthorized' });
-});
-
-//endpoint for creating a new user
+// new user
 apiRouter.post('/auth/create', async (req, res) => {
   const user = users[req.body.email];
   if (user) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const user = { email: req.body.email, password: req.body.password, token: uuid.v4() };
-    users[user.email] = user;
-
-    res.send({ token: user.token });
+    const newUser = {
+      email: req.body.email,
+      password: req.body.password,
+      token: uuid.v4(),
+    };
+    users[newUser.email] = newUser;
+    res.send({ token: newUser.token });
   }
 });
-
-// logout
+// Login
+apiRouter.post('/auth/login', async (req, res) => {
+  const user = users[req.body.email];
+  if (user && req.body.password === user.password) {
+    user.token = uuid.v4();
+    res.send({ token: user.token });
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
+// Logout
 apiRouter.delete('/auth/logout', (req, res) => {
   const user = Object.values(users).find((u) => u.token === req.body.token);
   if (user) {
@@ -53,4 +52,33 @@ apiRouter.delete('/auth/logout', (req, res) => {
   }
   res.status(204).end();
 });
+
+//get scores
+apiRouter.get('/scores', (_req, res) => {
+  res.send(scores);
+});
+
+// update scores
+apiRouter.post('/score', (req, res) => {
+  const { voter, votes } = req.body;
+
+  if (!users[voter]) {
+    res.status(400).send({ msg: 'Voter not recognized' });
+    return;
+  }
+
+  scores = updateScores(votes, scores);
+  res.send(scores);
+});
+
+// Fallback for unknown paths
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+
 
