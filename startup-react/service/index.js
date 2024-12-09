@@ -1,23 +1,23 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
-const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
-// In-memory storage
-let users = {};
-let scores = [
-  { name: 'Kenneth', score: 12729 },
-  { name: 'Conner', score: 3283 },
-  { name: 'James', score: 0 },
-];
+const authCookieName = 'token';
 
-//port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
-// JSON
 app.use(express.json());
+
+app.use(cookieParser());
+
+
 app.use(express.static('public'));
-//router
-var apiRouter = express.Router();
+
+app.set('trust proxy', true);
+
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 // new user
 apiRouter.post('/auth/create', async (req, res) => {
