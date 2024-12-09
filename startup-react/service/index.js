@@ -74,47 +74,13 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-// new user
-apiRouter.post('/auth/create', async (req, res) => {
-  const user = users[req.body.email];
-  if (user) {
-    res.status(409).send({ msg: 'Existing user' });
-  } else {
-    const newUser = {
-      email: req.body.email,
-      password: req.body.password,
-      token: uuid.v4(),
-    };
-    users[newUser.email] = newUser;
-    res.send({ token: newUser.token });
-  }
-});
-// Login
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = users[req.body.email];
-  if (user && req.body.password === user.password) {
-    user.token = uuid.v4();
-    res.send({ token: user.token });
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' });
-  }
-});
-// Logout
-apiRouter.delete('/auth/logout', (req, res) => {
-  const user = Object.values(users).find((u) => u.token === req.body.token);
-  if (user) {
-    delete user.token;
-  }
-  res.status(204).end();
-});
-
-//get scores
-apiRouter.get('/scores', (_req, res) => {
+// GetScores
+secureApiRouter.get('/scores', (_req, res) => {
   res.send(scores);
 });
 
-// update scores
-apiRouter.post('/score', (req, res) => {
+// submitScore
+secureApiRouter.post('/score', (req, res) => {
   const { voter, votes } = req.body;
 
   if (!users[voter]) {
@@ -126,22 +92,37 @@ apiRouter.post('/score', (req, res) => {
   res.send(scores);
 });
 
-// Fallback for unknown paths
+// Default error handler
+app.use((err, req, res, next) => {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
-//update
+// update helper
 function updateScores(votes, scores) {
   for (const vote of votes) {
-    const scoreEntry = scores.find((s) => s.name === vote.name);
+    const scoreEntry = scores.find(s => s.name === vote.name);
     if (scoreEntry) {
       scoreEntry.score += vote.score;
     }
   }
   return scores;
 }
+
+// Start the server
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
