@@ -53,6 +53,26 @@ apiRouter.post('/auth/login', async (req, res) => {
   }
 });
 
+// DeleteAuth
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(204).end();
+});
+
+//verifies credentials for endpoints
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  const authToken = req.cookies[authCookieName];
+  const user = Object.values(users).find(u => u.token === authToken);
+
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
 
 // new user
 apiRouter.post('/auth/create', async (req, res) => {
