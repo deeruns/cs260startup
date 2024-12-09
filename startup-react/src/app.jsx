@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Scores } from './scores/scores';
@@ -25,26 +25,26 @@ function App() {
               <div className="navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="login">
+                    <NavLink className="nav-link" to="/login">
                       Login
                     </NavLink>
                   </li>
                   {authState === AuthState.Authenticated && (
                     <>
                       <li className="nav-item">
-                        <NavLink className="nav-link" to="play">
+                        <NavLink className="nav-link" to="/play">
                           Play
                         </NavLink>
                       </li>
                       <li className="nav-item">
-                        <NavLink className="nav-link" to="scores">
+                        <NavLink className="nav-link" to="/scores">
                           Scores
                         </NavLink>
                       </li>
                     </>
                   )}
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="about">
+                    <NavLink className="nav-link" to="/about">
                       About
                     </NavLink>
                   </li>
@@ -57,6 +57,9 @@ function App() {
         <main className="container mt-5 pt-5">
           <div className="main-content">
             <Routes>
+              {/* Redirect root to login */}
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              
               <Route
                 path="/login"
                 element={
@@ -69,7 +72,6 @@ function App() {
                     }}
                   />
                 }
-                exact
               />
               <Route path="/play" element={<Play userName={userName} />} />
               <Route path="/scores" element={<Scores />} />
