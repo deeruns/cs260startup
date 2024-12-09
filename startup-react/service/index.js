@@ -39,6 +39,20 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 });
 
+// get authtoken
+apiRouter.post('/auth/login', async (req, res) => {
+  const { email, password } = req.body;
+  const user = users[email];
+
+  if (user && await bcrypt.compare(password, user.password)) {
+    user.token = uuid.v4();
+    setAuthCookie(res, user.token);
+    res.send({ id: user.email });
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
+
 
 // new user
 apiRouter.post('/auth/create', async (req, res) => {
