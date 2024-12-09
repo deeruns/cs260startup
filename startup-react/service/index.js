@@ -44,3 +44,13 @@ apiRouter.post('/auth/create', async (req, res) => {
     res.send({ token: user.token });
   }
 });
+
+// logout
+apiRouter.delete('/auth/logout', (req, res) => {
+  const user = Object.values(users).find((u) => u.token === req.body.token);
+  if (user) {
+    delete user.token;
+  }
+  res.status(204).end();
+});
+
