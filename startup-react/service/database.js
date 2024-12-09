@@ -43,4 +43,26 @@ async function getUser(email) {
     await userCollection.insertOne(user);
     return user;
   }
+    //update
+    async function updateScore(name, score) {
+        const result = await scoreCollection.updateOne(
+          { name: name },         
+          { $inc: { score: score } }, 
+          { upsert: true }
+        );
+        return result;
+      }
+      
+      //get score
+      async function getScores() {
+        return scoreCollection.find({}).toArray();
+      }
+      
+      module.exports = {
+        getUser,
+        getUserByToken,
+        createUser,
+        updateScore,  // Added export
+        getScores,    // Added export
+      };
   
