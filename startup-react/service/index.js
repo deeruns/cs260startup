@@ -80,5 +80,13 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-
-
+//update
+function updateScores(votes, scores) {
+  for (const vote of votes) {
+    const scoreEntry = scores.find((s) => s.name === vote.name);
+    if (scoreEntry) {
+      scoreEntry.score += vote.score;
+    }
+  }
+  return scores;
+}
