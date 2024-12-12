@@ -3,3 +3,17 @@
   font-size: 1.5em;
   padding: 0.5em;
 }
+
+.btn-create {
+  color: black !important;  /* Ensure black text */
+  background-color: white;  /* White background */
+  border: 2px solid black;  /* Optional: Add a border */
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-create:hover {
+  background-color: lightgray;  /* Hover effect */
+}
