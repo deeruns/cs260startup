@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 // mongo setup
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const url = "mongodb+srv://davin:davindee14@cluster0.fm6k4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(url);
 const db = client.db('simon');
 
