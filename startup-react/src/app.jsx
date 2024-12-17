@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
@@ -6,12 +6,37 @@ import { Scores } from './scores/scores';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css'; // Shared styling across pages
+import './app.css';
 
 function App() {
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
-  const [authState, setAuthState] = React.useState(currentAuthState);
+  const [authState, setAuthState] = useState(currentAuthState);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://your-server-url');
+
+    ws.onmessage = (event) => {
+      const receivedEvent = JSON.parse(event.data);
+      const notificationText = `${receivedEvent.type}: ${receivedEvent.value.runner || receivedEvent.value.name}`;
+      addNotification(notificationText);
+    };
+
+    return () => ws.close();
+  }, []);
+
+  const addNotification = (notificationText) => {
+    setNotifications((prev) => [...prev, notificationText]);
+    setTimeout(() => {
+      setNotifications((prev) => prev.filter((note) => note !== notificationText));
+    }, 10000);
+  };
+
+  const notifyUserAction = (type, value) => {
+    const notificationText = `${type}: ${value}`;
+    addNotification(notificationText);
+  };
 
   return (
     <BrowserRouter>
@@ -56,10 +81,14 @@ function App() {
 
         <main className="container mt-5 pt-5">
           <div className="main-content">
+            <h2>Notifications</h2>
+            <ul className="notifications-list">
+              {notifications.map((note, idx) => (
+                <li key={idx}>{note}</li>
+              ))}
+            </ul>
             <Routes>
-              {/* Redirect root to login */}
               <Route path="/" element={<Navigate to="/login" replace />} />
-              
               <Route
                 path="/login"
                 element={
@@ -69,11 +98,12 @@ function App() {
                     onAuthChange={(userName, authState) => {
                       setAuthState(authState);
                       setUserName(userName);
+                      notifyUserAction('Login', userName);
                     }}
                   />
                 }
               />
-              <Route path="/play" element={<Play userName={userName} />} />
+              <Route path="/play" element={<Play userName={userName} onVote={notifyUserAction} />} />
               <Route path="/scores" element={<Scores />} />
               <Route path="/about" element={<About />} />
               <Route path="*" element={<NotFound />} />
@@ -105,5 +135,6 @@ function NotFound() {
 }
 
 export default App;
+
 
 
