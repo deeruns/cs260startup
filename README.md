@@ -41,3 +41,13 @@ Header: added with the title of each page and BYU blue styling
 Footer: A footer on each page with my name and github link
 Main body: different on each page for different purposes. login, a play page with moving pictures and buttons, a scores page to show the scores and an about page to proide information
 window is responsive and resizes
+
+#SERVICE
+I added a backend service to my startup app using Node.js and Express.js. The backend serves files and handles features like user login and data storage. I set up Vite to connect the frontend to the backend for smooth communication. The app also fetches data from third-party APIs for extra features. Finally, I deployed the app using a custom script, making it live on my production domain.
+
+#LOGIN
+ added user login and authentication to my startup application using Node.js, Express.js, and MongoDB. The backend connects to a database, allowing users to create accounts, log in, and securely store credentials using encryption. I created API endpoints to manage user accounts, authenticate login attempts, and restrict certain features based on user access. Data is saved and retrieved from MongoDB, ensuring persistence across sessions. After development and debugging, I deployed the updated app to my production environment using a custom deployment script.
+
+#WS
+ added WebSocket support to my startup application, enabling real-time communication between the frontend and backend. The backend listens for WebSocket connections, while the frontend establishes a WebSocket connection upon loading. Messages are sent back and forth, allowing the application to display live updates in the interface. I configured Vite to proxy WebSocket requests during development for easier debugging. After implementing and testing the WebSocket features, I deployed the updated application using a custom deployment script to my production domain. messages should appear each time a user logs in
+
